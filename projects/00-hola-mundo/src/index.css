@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    background-color: #222;
+    font-family: system-ui;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    border: 1px solid white;
+    border-radius: 1em;
+    padding: 1em;
+    background-color: #292929;
+}
+
+.title {
+    color: white;
+    margin: 0 0 .5em .2em;
+}
