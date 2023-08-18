@@ -4,11 +4,6 @@ export function TwitterFollowCard({userName, name , avatar, initialIsFollowing})
     const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
     const [text,setText] = useState('Seguir')
 
-    /* var text = isFollowing ? 'Siguiendo' : 'Seguir';
-     const buttonClassName = isFollowing 
-    ? 'tw-followCard-button is-following' 
-    : 'tw-followCard-button'
-    */
     const handleFollowing = () => {
         if(isFollowing){
             setIsFollowing(false)
@@ -39,8 +34,6 @@ export function TwitterFollowCard({userName, name , avatar, initialIsFollowing})
         }
     }
 
-
-    
     return( 
     <article className='tw-followCard'>
         <header className='tw-followCard-header'>
