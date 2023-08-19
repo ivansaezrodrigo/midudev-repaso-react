@@ -1,68 +1,65 @@
-import { useState } from "react"
-import confetti from "canvas-confetti"
+import { useState } from "react";
+import confetti from "canvas-confetti";
 
-import { Square } from "./components/Square.jsx"
-import {TURNS} from "./constants.js"
-import { checkWinnerFrom, checkEndGame } from "./logic/board.js"
-import { WinnerModal } from "./components/WinnerModal.jsx"
+import { Square } from "./components/Square.jsx";
+import { TURNS } from "./constants.js";
+import { checkWinnerFrom, checkEndGame } from "./logic/board.js";
+import { WinnerModal } from "./components/WinnerModal.jsx";
 
-import { saveGameStorage,resetGameStorage } from "./logic/storage/index.js"
-
+import { saveGameStorage, resetGameStorage } from "./logic/storage/index.js";
 
 function App() {
-  const [board,setBoard] = useState( () => {
-    const boardFromStorage = window.localStorage.getItem('board')
-    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
-  })
-  const [turn, setTurn] = useState(()=>{
-    const turnFromStorage = window.localStorage.getItem('turn')
-    return turnFromStorage ?? TURNS.X
-  })
-  const [winner,setWinner] = useState(null) // null = no ganador, false = empate
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem("board");
+    return boardFromStorage
+      ? JSON.parse(boardFromStorage)
+      : Array(9).fill(null);
+  });
+  const [turn, setTurn] = useState(() => {
+    const turnFromStorage = window.localStorage.getItem("turn");
+    return turnFromStorage ?? TURNS.X;
+  });
+  const [winner, setWinner] = useState(null); // null = no ganador, false = empate
 
   const resetGame = () => {
-    setBoard(Array(9).fill(null))
-    setTurn(TURNS.X)
-    setWinner(null)
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.X);
+    setWinner(null);
 
-    resetGameStorage()
-  }
+    resetGameStorage();
+  };
 
   const updateBoard = (index) => {
-    if (board[index] || winner) return // no actualizamos esta posición si ya tiene algo
+    if (board[index] || winner) return; // no actualizamos esta posición si ya tiene algo
 
-    const newBoard = [...board]
-    newBoard[index] = turn
-    setBoard(newBoard)
-    const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
-    setTurn(newTurn)
+    const newBoard = [...board];
+    newBoard[index] = turn;
+    setBoard(newBoard);
+    const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
+    setTurn(newTurn);
 
-    saveGameStorage({board:newBoard,turn:newTurn})
+    saveGameStorage({ board: newBoard, turn: newTurn });
     // revisamos si hay ganador
-    const newWinner = checkWinnerFrom(newBoard)
+    const newWinner = checkWinnerFrom(newBoard);
     if (newWinner) {
-      confetti()
-      setWinner(newWinner)      
+      confetti();
+      setWinner(newWinner);
     } else if (checkEndGame(newBoard)) {
-      setWinner(false)
+      setWinner(false);
     }
-  }
+  };
 
   return (
     <main className="board">
       <h1>Tic Tac Toe</h1>
       <button onClick={resetGame}>Volver a empezar</button>
       <section className="game">
-        {board.map((square,index) =>{
-          return(
-            <Square 
-            key={index} 
-            index={index}
-            updateBoard={updateBoard}
-            >
+        {board.map((square, index) => {
+          return (
+            <Square key={index} index={index} updateBoard={updateBoard}>
               {square}
             </Square>
-          )
+          );
         })}
       </section>
 
@@ -72,9 +69,8 @@ function App() {
       </section>
 
       <WinnerModal resetGame={resetGame} winner={winner} />
-      
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
