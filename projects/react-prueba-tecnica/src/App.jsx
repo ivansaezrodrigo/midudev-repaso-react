@@ -7,27 +7,34 @@ export function App() {
     const [ fact, setFact] = useState()
     const [ imageUrl, setImageURL] = useState()
 
+
+    // para recuperar la cita
     useEffect(()=>{
         fetch(CAT_ENDPOINT_RANDOM_FACT)
         .then(res=> res.json())
         .then(data => {
             const {fact} = data;
             setFact(fact)
-
-            const firstWord = fact.split(' ',3).join(' ')
-            console.log(firstWord)
-
-            fetch(`https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`)
-            .then(res => res.json())
-            .then(
-                response => {
-                    const { url } = response
-                    setImageURL(url)
-                }
-            )
-            }
-        ) 
+        }) 
     },[])
+
+    // para recuperar la imagen cada vez que cambie la cita
+    useEffect(()=>{
+        if (!fact) return
+        
+        const firstWord = fact.split(' ',3).join(' ')
+        console.log(firstWord)
+
+        fetch(`https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`)
+        .then(res => res.json())
+        .then(
+            response => {
+                const { url } = response
+                setImageURL(url)
+            }
+        )
+    },[fact])
+
 
     return (
         <main style={{display:'flex', flexDirection: 'column', alignItems:'center' ,justifyContent:'center', fontFamily:'system-ui'}}>
