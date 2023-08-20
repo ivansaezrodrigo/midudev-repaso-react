@@ -21,10 +21,8 @@ export function App() {
     // para recuperar la imagen cada vez que cambie la cita
     useEffect(()=>{
         if (!fact) return
-        
         const firstWord = fact.split(' ',3).join(' ')
-        console.log(firstWord)
-
+        
         fetch(`https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`)
         .then(res => res.json())
         .then(
