@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "eslint": "^8.47.0",
     "standard": "^17.1.0",
     "vite": "^4.4.5"
   },
@@ -18,7 +19,6 @@
     "react-dom": "^18.2.0"
   },
   "eslintConfig": {
-    "extends":"./node_modules/standard/eslintrc.json"
+    "extends": "standard/base"
   }
-  
 }
