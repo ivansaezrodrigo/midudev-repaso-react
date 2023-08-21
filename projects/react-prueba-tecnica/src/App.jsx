@@ -1,8 +1,6 @@
 import { useCatFact } from "./hooks/useCatFact.js";
 import { useCatImage } from "./hooks/useCatImage.js";
 
-const CAT_PREFIX_IMAGE_URL = `https://cataas.com/`;
-
 export function App() {
   const { fact, refreshFact } = useCatFact()
   const { imageUrl } = useCatImage({ fact });
@@ -29,7 +27,7 @@ export function App() {
       {imageUrl && (
         <img
           style={{ height: "300px", maxWidth: "300px", objectFit: "cover" }}
-          src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`}
+          src={`${imageUrl}`}
           alt="Imagen del gato"
         />
       )}
