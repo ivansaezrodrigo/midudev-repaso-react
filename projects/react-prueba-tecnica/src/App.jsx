@@ -1,5 +1,6 @@
 import { useCatFact } from "./hooks/useCatFact.js";
 import { useCatImage } from "./hooks/useCatImage.js";
+import { Otro } from "./components/Otro.jsx";
 
 export function App() {
   const { fact, refreshFact } = useCatFact()
@@ -31,6 +32,9 @@ export function App() {
           alt="Imagen del gato"
         />
       )}
+
+      <Otro />
+      <Otro />
     </main>
   );
 }
