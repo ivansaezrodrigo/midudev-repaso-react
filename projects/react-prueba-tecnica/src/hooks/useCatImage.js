@@ -20,11 +20,6 @@ export function useCatImage({ fact }) {
         });
     }, [fact]);
   
-    const handleClick = async () => {
-      const newFact = await getRandomFact();
-      setFact(newFact);
-    };
-  
     return { imageUrl: `${CAT_PREFIX_IMAGE_URL}${imageUrl}` };
   } // {imageUrl: 'https://...'}
   
