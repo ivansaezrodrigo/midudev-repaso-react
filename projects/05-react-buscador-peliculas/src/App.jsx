@@ -30,17 +30,15 @@ function App() {
   }
 
   const handleChange = (event) =>{
-    setQuery(event.target.value)
-  }
-
-  useEffect(()=>{
+    const newQuery = event.target.value
+    setQuery(newQuery)
+    
     // ZOD es una buena librería para validar datos
     setError(null)
-    if(query.length < 3) setError('La búsqueda ha de tener al menos 3 carácteres.')
-    if(query === "") setError('No se puede buscar una película vacía.')
-    if(query.match(/^\d+$/)) setError('No se puede buscar una película con un número.')
-
-  },[query])
+    if(newQuery.length < 3) setError('La búsqueda ha de tener al menos 3 carácteres.')
+    if(newQuery === "") setError('No se puede buscar una película vacía.')
+    if(newQuery.match(/^\d+$/)) setError('No se puede buscar una película con un número.')
+  }
 
   return (
     <div className='page'>
