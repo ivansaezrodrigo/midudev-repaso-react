@@ -10,9 +10,16 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    // Use ref:
     //const value = inputRef.current.value
-    const fields = new window.FormData(event.target)
-    const query = fields.get('query')
+
+    // window.FormData:
+    //const fields = new window.FormData(event.target)
+    //const query = fields.get('query')
+
+    // Object.fromEntries:
+    const {query} = Object.fromEntries(new window.FormData(event.target))
+
     console.log(query)
   }
 
