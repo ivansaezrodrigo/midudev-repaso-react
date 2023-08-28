@@ -10,8 +10,10 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const value = inputRef.current.value
-    console.log(value)
+    //const value = inputRef.current.value
+    const fields = new window.FormData(event.target)
+    const query = fields.get('query')
+    console.log(query)
   }
 
   return (
@@ -19,7 +21,7 @@ function App() {
       <header>
         <h1>Buscador de películas</h1>
         <form className="form" onSubmit={handleSubmit}>
-          <input ref={inputRef} type="text" name="input" id="" placeholder='The Avengers, Star Wars, The Matrix...' />
+          <input ref={inputRef} type="text" name="query" placeholder='The Avengers, Star Wars, The Matrix...' />
           <button type='submit'>Buscar</button>
         </form>
       </header>
