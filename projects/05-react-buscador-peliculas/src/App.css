@@ -2,6 +2,7 @@ main {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .page {
@@ -9,10 +10,31 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 800px;
 }
 
 .form {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.movies {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+    width: 100%;
+    gap: 2em;
+}
+
+.movie {
+    text-align: center;
+}
+
+.movie h3, .movie p {
+    padding: 0;
 }

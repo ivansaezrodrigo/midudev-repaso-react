@@ -2,13 +2,12 @@ import './App.css'
 import { useEffect, useState } from 'react'
 import { Movies } from './components/Movies.jsx'
 import { useMovies } from './hooks/useMovies.js'
-import withoutResults from './mocks/no-results.json'
 import { useSearch } from './hooks/useSearch.js'
 
 
 function App() {
-  const movies = useMovies()
   const {search, updateSearch, error} = useSearch()
+  const {movies, getMovies} = useMovies({search})
 
   console.log('render')
 
@@ -27,7 +26,7 @@ function App() {
     // Object.fromEntries:
     //const {search} = Object.fromEntries(new window.FormData(event.target))
 
-    console.log({search})
+    getMovies()
   }
 
   const handleChange = (event) =>{
