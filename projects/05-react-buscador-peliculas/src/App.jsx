@@ -26,7 +26,7 @@ function App() {
     // Object.fromEntries:
     //const {search} = Object.fromEntries(new window.FormData(event.target))
 
-    getMovies()
+    getMovies({search})
   }
 
   const handleSort = () => {
