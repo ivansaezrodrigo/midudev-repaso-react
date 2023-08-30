@@ -1,5 +1,4 @@
 import './App.css'
-import { useEffect, useState } from 'react'
 import { Movies } from './components/Movies.jsx'
 import { useMovies } from './hooks/useMovies.js'
 import { useSearch } from './hooks/useSearch.js'
@@ -7,7 +6,7 @@ import { useSearch } from './hooks/useSearch.js'
 
 function App() {
   const {search, updateSearch, error} = useSearch()
-  const {movies, getMovies} = useMovies({search})
+  const {movies, loading, getMovies} = useMovies({search})
 
   console.log('render')
 
@@ -46,7 +45,9 @@ function App() {
         {error && <p style={{color:'red'}}>{error}</p>}
       </header>
       <main>
-        <Movies movies={movies} />
+        {
+        loading ? <p>Cargando..</p> : <Movies movies={movies} />
+        }
       </main>
     </div>
   )
