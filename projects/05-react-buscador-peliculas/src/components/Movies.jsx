@@ -22,7 +22,11 @@ export function NoMoviesResults() {
 }
 
 export function Movies( {movies} ) {
-    const hasMovies = movies?.length > 0
+  try{
+    var hasMovies = movies?.length > 0
+  } catch (e) {
+    hasMovies = false
+  }
     
     return (
         hasMovies
