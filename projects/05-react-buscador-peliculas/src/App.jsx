@@ -10,7 +10,6 @@ function App() {
   const {search, updateSearch, error} = useSearch()
   const {movies, loading, getMovies} = useMovies({search , sort})
 
-  console.log('render')
 
   const handleSubmit = (event) => {
     event.preventDefault()
