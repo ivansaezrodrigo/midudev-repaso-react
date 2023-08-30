@@ -34,9 +34,11 @@ function App() {
   }
 
   const handleChange = (event) =>{
-    const newsearch = event.target.value
-    if (newsearch.startsWith(' ')) return
-    updateSearch(newsearch)
+    const newSearch = event.target.value
+    if (newSearch.startsWith(' ')) return
+    updateSearch(newSearch)
+    getMovies({ search: newSearch})
+  
   }
 
   return (
