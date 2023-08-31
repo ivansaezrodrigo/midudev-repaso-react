@@ -3,10 +3,11 @@ import { Products } from './components/Products.jsx'
 import { useState } from 'react'
 import { Filters } from './components/Filters.jsx'
 import { Header } from './components/Header.jsx'
+import { Footer } from './components/Footer.jsx'
 import './App.css'
+import { IS_DEVELOPMENT } from './config'
 
-function App() {
-  const [products] = useState(initialProducts)
+function useFilters () {
   const [filters, setFilters] = useState({
     category: 'all',
     minPrice: 0
@@ -22,6 +23,13 @@ function App() {
     )
   }))
 
+  return {filters, filterProducts, setFilters}
+}
+
+
+function App() {
+  const {filters, filterProducts, setFilters} = useFilters()
+  const [products] = useState(initialProducts)
 
   const filteredProducts = filterProducts(products)
 
@@ -29,6 +37,7 @@ function App() {
     <>
       <Header changeFilters={setFilters} />
       <Products products={filteredProducts} />
+      {IS_DEVELOPMENT ? <Footer filters={filters}/> : <Footer/>}
     </>
   )
 }
