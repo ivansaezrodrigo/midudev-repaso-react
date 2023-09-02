@@ -47,7 +47,7 @@ export const cartReducer = (state, action) => {
         }
 
         case CART_ACTIONS_TYPES.CLEAR_CART: {
-            window.localStorage.removeItem('cart')
+            updateLocalStorage([])
             return []
         }
 
